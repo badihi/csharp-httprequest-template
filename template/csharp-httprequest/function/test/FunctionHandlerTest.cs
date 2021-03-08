@@ -34,7 +34,7 @@ namespace FunctionTest
         public async Task HandleTest()
         {
             var result = await _handler.Handle(_mockRequest.Object);
-            Assert.Equal(200, result.Item1);
+            Assert.Equal(System.Net.HttpStatusCode.OK, result.Status);
         }
 
         private Mock<HttpRequest> CreateMockRequest(object body, Dictionary<string, StringValues> query = null)

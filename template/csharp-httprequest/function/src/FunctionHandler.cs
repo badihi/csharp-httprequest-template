@@ -6,12 +6,12 @@ namespace Function
 {
     public class FunctionHandler
     {
-        public async Task<(int, string)> Handle(HttpRequest request)
+        public async Task<Response> Handle(HttpRequest request)
         {
             var reader = new StreamReader(request.Body);
             var input = await reader.ReadToEndAsync();
 
-            return (200, $"Hello! Your input was {input}");
+            return new Text(System.Net.HttpStatusCode.OK, $"Hello! Your input was {input}", "text/plain");
         }
     }
 }

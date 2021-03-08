@@ -22,19 +22,10 @@ public class Startup
                 return;
             }
 
-            if (context.Request.Method != "POST")
-            {
-                context.Response.StatusCode = 405;
-                await context.Response.WriteAsync("405 - Only POST method allowed");
-                return;
-            }
-
             try
             {
-                var (status, text) = await new FunctionHandler().Handle(context.Request);
-                context.Response.StatusCode = status;
-                if (!string.IsNullOrEmpty(text))
-                    await context.Response.WriteAsync(text);
+                var response = await new FunctionHandler().Handle(context.Request);
+                await response.ApplyToHttpResponse(context.Response);
             }
             catch (NotImplementedException nie)
             {
