@@ -16,7 +16,7 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 RUN mkdir -p /home/app/function
 WORKDIR /home/app/function
-COPY ./function/Function.csproj  .
+COPY ./function/src/Function.csproj  .
 
 WORKDIR /home/app/src/
 COPY ./root.csproj  .
