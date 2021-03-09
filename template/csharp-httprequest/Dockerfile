@@ -18,7 +18,7 @@ RUN mkdir -p /home/app/function
 WORKDIR /home/app/function
 COPY ./function/src/Function.csproj  .
 
-WORKDIR /home/app/src/
+WORKDIR /home/app/
 COPY ./root.csproj ./function/nuget.config* ./
 RUN dotnet restore ./root.csproj
 
@@ -35,7 +35,7 @@ RUN addgroup --system app \
     && adduser --system --ingroup app app
 
 WORKDIR /home/app/
-COPY --from=builder /home/app/src/published .
+COPY --from=builder /home/app/published .
 RUN chown app:app -R /home/app
 
 USER app
