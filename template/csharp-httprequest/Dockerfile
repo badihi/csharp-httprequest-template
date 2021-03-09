@@ -19,7 +19,7 @@ WORKDIR /home/app/function/src
 COPY ./function/src/Function.csproj  .
 
 WORKDIR /home/app/
-COPY ./root.csproj ./function/nuget.config* ./
+COPY ./root.csproj ./function/nuget.config ./
 RUN dotnet restore ./root.csproj
 
 COPY .  .
